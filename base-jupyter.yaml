@@ -1,0 +1,16 @@
+spec:
+  containers:
+  - name: base-jupyter
+    image: sfsenorthamerica-demo-sehrlich.registry.snowflakecomputing.com/db1/schema_db/spcs_repository/base-jupyter:latest
+    volumeMounts:
+      - name: data-stg
+        mountPath: /data
+  endpoints:
+    - name: base-jupyter
+      port: 8888
+      public: true
+  volumes:
+    - name: data-stg
+      source: "@GPU_SSE_STAGE"
+  networkPolicyConfig:
+      allowInternetEgress: true
